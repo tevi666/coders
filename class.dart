@@ -8,7 +8,7 @@ void main() {
   alex.info();
 }
 
-class User {
+class User {  
   String? name;
   int? age;
   bool? isActive;

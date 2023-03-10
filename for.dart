@@ -14,53 +14,63 @@ void main() {
   //   element++;
   //   print(element);
   // });
-  // final obj = [
-  //   1,
-  //   2,
-  //   3,
-  //   4,
-  //   5,
-  //   6,
-  //   'Baku',
-  //   'Azerbaijan',
-  //   'Ukraine',
-  //   'Kyiv',
-  //   'Turkie',
-  //   2.0,
-  //   42.0,
-  //   88.0,
-  //   true,
-  //   false
-  // ];
-  // List<int> integers = [];
-  // List<String> strings = [];
-  // for (var element in obj) {
-  //   bool isInt = element is int;
-  //   bool isString = element is String;
-  //   if (isString) {
-  //     strings.add(element);
-  //   }
-  // }
-
-  List<String> info = [];
-  List<String> flutterArr = [];
-  List<String> dartArr = [];
-
-  for (int i = 0; i < 5; i++) {
-    print('Please write your name');
-    String createName = stdin.readLineSync()!;
-    print('Please write your want course?');
-    String createCourses = stdin.readLineSync()!;
-    String studAndLess = '$createName $createCourses';
-    info.add(studAndLess);
-    if (info[i].contains('Flutter')) {
-      flutterArr.add(info[i]);
-    } else if (info[i].contains('Dart')) {
-      dartArr.add(info[i]);
+  final List obj = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    'Baku',
+    'Azerbaijan',
+    'Ukraine',
+    'Kyiv',
+    'Turkie',
+    2.0,
+    42.0,
+    88.0,
+    true,
+    false
+  ];
+  List<int> integers = [];
+  List<String> strings = [];
+  List<double> doubles = [];
+  List<bool> boolean = [];
+  for (var type in obj) {
+    if (type is int) {
+      integers.add(type);
+    } else if (type is String) {
+      strings.add(type);
+    } else if (type is double) {
+      doubles.add(type);
+    } else {
+      boolean.add(type);
     }
   }
-  print(flutterArr.join(', '));
-  print(dartArr.join(', '));
+  print(integers.join(','));
+  print(strings.join(','));
+  print(doubles.join(','));
+  print(boolean.join(','));
+
+  // List<String> info = [];
+  // List<String> flutterArr = [];
+  // List<String> dartArr = [];
+
+  // for (int i = 0; i < 5; i++) {
+  //   print('Please write your name');
+  //   String createName = stdin.readLineSync()!;
+  //   print('Please write your want course?');
+  //   String createCourses = stdin.readLineSync()!;
+  //   String studAndLess = '$createName $createCourses';
+  //   info.add(studAndLess);
+  //   if (info[i].contains('Flutter')) {
+  //     flutterArr.add(info[i]);
+  //   } else if (info[i].contains('Dart')) {
+  //     dartArr.add(info[i]);
+  //   }
+  // }
+  // print(flutterArr.join(', '));
+  // print(dartArr.join(', '));
 
   // Random random = new Random();
   // int randomNumber = random.nextInt(10) + 3;
