@@ -2,31 +2,67 @@ import 'dart:io';
 import 'dart:math';
 
 void main() {
+  // var user1 = MobileGroup(
+  //     'Tevi', 25, 'mobile developer', false, ['Football', 'Tennis']);
+  // user1.info();
+  String registrLogin;
+  String registrPassword;
+  String confirmPassword;
+  print('yeni hesap yaratmaq ucun login daxil edin!');
+  registrLogin = stdin.readLineSync()!;
+  print('yeni şifrə daxil edin!');
+  registrPassword = stdin.readLineSync()!;
+  print('şifrəni tekrarlayin!');
+  confirmPassword = stdin.readLineSync()!;
+  var registrUser =
+      Registration('$registrLogin', '$registrPassword', '$confirmPassword');
+  var isConfirm = registrPassword == confirmPassword;
 
-  var user1 = MobileGroup(
-      'Tevi', 25, 'mobile developer', false, ['Football', 'Tennis']);
-  user1.info();
-
-  List<String> data = [];
-  print('write your login');
-  var authLogin = stdin.readLineSync();
-  print('write your password');
-  var authPassword = stdin.readLineSync();
-  var user = Authorization('$authLogin', '$authPassword', true);
-  data.add(user.login!);
-  data.add(user.password!);
-  user.info();
-  print('Database: $data');
-
-  for (var i = 0; i < 3; i++) {
-    print('how fast do you drive on the road?');
-    String mySpd = stdin.readLineSync()!;
-    var parseSpeed = int.parse(mySpd);
-    final car1 = Car(parseSpeed);
-    car1.warn();
+  if (isConfirm) {
+    print('tebrik edirik siz registrasiyani kecdiniz');
+    registrUser.registrInfo();
+  } else {
+    print('siz shifreni duz yiqmadiniz');
   }
-}
 
+  List<String> dialogs = [];
+  print('loginivizi yazin');
+  var authLogin = stdin.readLineSync();
+  print('paroluvizi yazin');
+  var authPassword = stdin.readLineSync();
+  var user = Authorization('$authLogin', '$authPassword');
+
+  if (authLogin != registrLogin && authPassword != registrPassword) {
+    print('bele bir user movcud deyil');
+  } else if (authPassword != registrPassword || authLogin != registrLogin) {
+    print('login veya shifre duz degil');
+  } else {
+    print('siz hesaba gire bildiniz');
+    user.info();
+    for (var i = 0; i < 5; i++) {
+      print('admin, $authLogin usere messaj yazın');
+      var admin = stdin.readLineSync();
+      print('user $authLogin admine messaj yazın');
+      var user = stdin.readLineSync();
+      var dialog = '-admin: $admin\n-$authLogin: $user\n';
+      dialogs.add('$dialog');
+      print('${dialogs.join('')}');
+    }
+  }
+
+  // if (authLogin == registrLogin && authPassword == registrPassword) {
+
+  // } else {
+  //   print('shifre yada parol duz degil, tezeden prob edin.');
+  // }
+  // for (var i = 0; i < 3; i++) {
+  //   print('how fast do you drive on the road?');
+  //   String mySpd = stdin.readLineSync()!;
+  //   var parseSpeed = int.parse(mySpd);
+  //   final car1 = Car(parseSpeed);
+  //   car1.warn();
+  // }
+}
 
 class MobileGroup {
   String? group;
@@ -53,42 +89,44 @@ class MobileGroup {
   }
 }
 
-class Authorization {
+class Registration {
   String? login;
   String? password;
-  bool? rememberMe;
+  String? confirmPassword;
+  String? email;
 
-  Authorization([login, password, rememberMe]) {
+  Registration(login, password, confirmPassword, [email]) {
     this.login = login;
     this.password = password;
-    this.rememberMe = rememberMe;
+    this.confirmPassword = confirmPassword;
+    this.email = email;
   }
 
-  void info() {
-    var saved = rememberMe! ? 'saved' : 'not saved';
+  void registrInfo() {
     print(
-        'Hi, your login is $login and password is $password, and you $saved. Welcome to the site');
+        'Siz teze hesab yaratmış oldunuz. hesaba girmek ucun tezeden login ve parolu yazın!');
   }
 }
 
-class Car {
-  int? mySpeed;
-  int limitSpeed = 90;
+class Authorization {
+  String? login;
+  String? password;
 
-  void limit() {
-    print(limitSpeed);
+  Authorization([login, password]) {
+    this.login = login;
+    this.password = password;
   }
 
-  Car(mySpeed) {
-    this.mySpeed = mySpeed;
-  }
-
-  void warn() {
-    var lsp = mySpeed! > 90
-        ? 'I stopped you for speeding'
-        : 'everything is ok, you follow the rules of the road';
-
+  void info() {
     print(
-        'your speed $mySpeed km/h, speed limit of this road $limitSpeed km/h, $lsp');
+        'Salam, sizin login $login ve parol $password. Xow gelmisiniz saytimiza');
   }
+}
+
+class Cat {
+  String? name;
+}
+
+class Murka extends Cat {
+  int? age;
 }
